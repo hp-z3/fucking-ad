@@ -127,6 +127,8 @@ def validate_record(file_path: Path) -> list[str]:
     desc = data.get("description")
     if not desc or not isinstance(desc, str) or len(desc.strip()) < 10:
         errors.append("字段 'description' 必须至少包含 10 个字的详细客观描述")
+    elif re.search(r"<[^>]+>", desc):
+        errors.append(f"字段 'description' 不能包含原生 HTML 标签代码，请使用纯文本客观记录: '{desc[:30]}...'")
 
     # 7. Check Alternatives (Optional)
     for alt_field in ["host_alternatives", "advertiser_alternatives", "suggested_alternatives"]:

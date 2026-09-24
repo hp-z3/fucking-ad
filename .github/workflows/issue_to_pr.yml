@@ -122,7 +122,7 @@ jobs:
         with:
           script: |
             const prNum = ${{ steps.cpr.outputs.pull-request-number }};
-            const commentBody = `🎉 **感谢你的曝光发声！**\n\n机器人已自动将你的提交转换为结构化数据档案，并创建了合并请求：#${prNum}。\n\n维护团队将在核实截图证据后点击合并，届时主页和 [在线避雷检索站](https://fairyeye.github.io/fucking-ad/) 将自动更新上线！`;
+            const commentBody = `🎉 **感谢你的曝光发声！**\n\n机器人已自动将你的提交转换为结构化数据档案，并创建了合并请求：#${prNum}。\n\n维护团队将在核实截图证据后点击合并，届时主页和 [在线避雷检索站](https://hp-z3.github.io/fucking-ad/) 将自动更新上线！`;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,

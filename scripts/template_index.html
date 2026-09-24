@@ -136,7 +136,7 @@
             <span>10秒提交案例</span>
           </button>
           
-          <a href="https://github.com/fairyeye/fucking-ad" target="_blank" class="p-2 rounded-xl text-slate-400 hover:text-white bg-dark-900/80 hover:bg-dark-800 border border-white/5 transition-colors" title="GitHub 仓库">
+          <a href="https://github.com/hp-z3/fucking-ad" target="_blank" class="p-2 rounded-xl text-slate-400 hover:text-white bg-dark-900/80 hover:bg-dark-800 border border-white/5 transition-colors" title="GitHub 仓库">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
         </div>
@@ -424,10 +424,15 @@
   <!-- Image Lightbox -->
   <div id="image-modal" class="fixed inset-0 z-50 bg-dark-950/90 backdrop-blur-2xl hidden items-center justify-center p-4">
     <div class="relative max-w-4xl max-h-[92vh] flex flex-col items-center">
-      <img id="modal-img" src="" alt="现场截图" class="max-w-full max-h-[82vh] rounded-2xl shadow-2xl border border-white/10 object-contain">
-      <div class="mt-3 flex items-center justify-between w-full text-xs text-slate-400 px-2">
-        <span id="modal-caption"></span>
-        <button id="close-modal-btn" class="px-3 py-1 rounded-lg bg-dark-800 text-white hover:bg-dark-700">关闭预览 (ESC)</button>
+      <img id="modal-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" referrerpolicy="no-referrer" alt="现场截图" class="max-w-full max-h-[80vh] rounded-2xl shadow-2xl border border-white/10 object-contain">
+      <div class="mt-3 flex items-center justify-between w-full text-xs text-slate-400 px-2 gap-3">
+        <span id="modal-caption" class="truncate font-medium text-slate-300"></span>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="modal-view-original" href="#" target="_blank" class="px-3 py-1.5 rounded-lg bg-dark-800 text-sky-400 hover:text-sky-300 hover:bg-dark-700 transition-colors">
+            查看原图 ↗
+          </a>
+          <button id="close-modal-btn" class="px-3 py-1.5 rounded-lg bg-dark-800 text-white hover:bg-dark-700 transition-colors">关闭预览 (ESC)</button>
+        </div>
       </div>
     </div>
   </div>
@@ -446,9 +451,9 @@
       </div>
       <p>互联网也许容易健忘，但开源社区记性很好。数据遵从 CC BY-NC-SA 4.0 协议，坚持客观求真。</p>
       <div class="flex items-center justify-center gap-4 text-slate-400 pt-1">
-        <a href="https://github.com/fairyeye/fucking-ad" target="_blank" class="hover:text-sky-400 transition-colors">GitHub 源码</a>
+        <a href="https://github.com/hp-z3/fucking-ad" target="_blank" class="hover:text-sky-400 transition-colors">GitHub 源码</a>
         <span>·</span>
-        <a href="https://github.com/fairyeye/fucking-ad/blob/main/CONTRIBUTING.md" target="_blank" class="hover:text-sky-400 transition-colors">贡献指南</a>
+        <a href="https://github.com/hp-z3/fucking-ad/blob/main/CONTRIBUTING.md" target="_blank" class="hover:text-sky-400 transition-colors">贡献指南</a>
         <span>·</span>
         <a href="javascript:void(0)" onclick="window.openReportModal()" class="text-sky-400 hover:underline">提供线索</a>
       </div>
@@ -477,6 +482,16 @@
 
       function getRecordOutrage(r) {
         return (r.outrage_count || 0) + (userOutrages[r.id] || 0);
+      }
+
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
       }
 
       // Elements
@@ -581,12 +596,12 @@
                 <!-- Header -->
                 <div class="p-4 border-b border-white/5 flex items-center justify-between gap-2 bg-dark-900/40">
                   <div class="flex items-center gap-2">
-                    <span class="text-xs font-mono text-slate-400 font-medium">${r.date}</span>
+                    <span class="text-xs font-mono text-slate-400 font-medium">${escapeHtml(r.date)}</span>
                     <span class="text-[11px] font-mono px-2 py-0.5 rounded-md border border-white/10 bg-dark-850 text-sky-300">
-                      ${adv.category || '不良广告'}
+                      ${escapeHtml(adv.category || '不良广告')}
                     </span>
                   </div>
-                  <span class="text-[10px] font-mono text-slate-500 truncate max-w-[100px]">${r.id}</span>
+                  <span class="text-[10px] font-mono text-slate-500 truncate max-w-[100px]">${escapeHtml(r.id)}</span>
                 </div>
 
                 <!-- Body -->
@@ -594,15 +609,15 @@
                   <div class="flex items-start justify-between gap-2 mb-3">
                     <div>
                       <h3 class="text-lg font-black text-white group-hover:text-sky-400 transition-colors flex items-center gap-1.5">
-                        ${adv.name}
+                        ${escapeHtml(adv.name)}
                       </h3>
                       <p class="text-xs text-slate-400 mt-0.5">
-                        企业主体: <span class="text-slate-300 font-medium">${adv.parent_company || '未知'}</span>
+                        企业主体: <span class="text-slate-300 font-medium">${escapeHtml(adv.parent_company || '未知')}</span>
                       </p>
                     </div>
                     <div class="text-right shrink-0">
                       <span class="text-xs px-2.5 py-1 rounded-xl bg-dark-900 border border-white/5 text-cyan-400 font-mono font-medium flex items-center gap-1">
-                        <span>📱</span> ${host.name} <span class="text-slate-500 font-normal text-[11px]">(${host.platform}${host.version ? ' v' + host.version : ''})</span>
+                        <span>📱</span> ${escapeHtml(host.name)} <span class="text-slate-500 font-normal text-[11px]">(${escapeHtml(host.platform)}${escapeHtml(host.version ? ' v' + host.version : '')})</span>
                       </span>
                     </div>
                   </div>
@@ -611,29 +626,42 @@
                   <div class="flex flex-wrap gap-1.5 my-3">
                     ${offenses.map(o => `
                       <span class="text-[11px] px-2.5 py-0.5 rounded-lg bg-sky-500/10 text-sky-300 border border-sky-500/20 font-medium flex items-center gap-1">
-                        <span>⚠️</span> ${o}
+                        <span>⚠️</span> ${escapeHtml(o)}
                       </span>
                     `).join('')}
                   </div>
 
                   <!-- Description -->
-                  <p class="text-xs sm:text-sm text-slate-300 line-clamp-3 leading-relaxed bg-dark-900/60 p-3 rounded-xl border border-white/5">
-                    ${r.description}
+                  <p class="text-xs sm:text-sm text-slate-300 line-clamp-3 leading-relaxed bg-dark-900/60 p-3 rounded-xl border border-white/5 break-words">
+                    ${escapeHtml(r.description)}
                   </p>
 
                   <!-- Evidence Screenshot Thumbnail -->
                   ${thumb ? `
                     <div class="mt-3">
-                      <div class="relative cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-dark-950 h-36 flex items-center justify-center group/thumb" onclick="window.previewImage('${thumb}', '${adv.name} 在 ${host.name} 的弹窗现场截图')">
-                        <img src="${thumb}" alt="现场截图" class="w-full h-full object-cover group-hover/thumb:scale-105 transition-all duration-300 opacity-80 group-hover/thumb:opacity-100" onerror="this.src=''; this.parentElement.innerHTML='<div class=\\'flex items-center gap-1.5 text-xs text-slate-500\\'><span>📷</span> 现场截图已存证在库</div>'">
-                        <div class="absolute inset-0 bg-dark-950/40 backdrop-blur-[1px] flex items-center justify-center opacity-0 group-hover/thumb:opacity-100 transition-opacity">
-                          <span class="text-xs font-bold text-white bg-dark-900/90 px-3 py-1.5 rounded-xl border border-white/10 shadow-lg">
-                            🔍 查看现场凭据
+                      <div class="relative cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-dark-950/80 h-56 sm:h-60 flex items-center justify-center group/thumb p-1.5" onclick="window.previewImage('${escapeHtml(thumb)}', '${escapeHtml(adv.name)} 在 ${escapeHtml(host.name)} 的弹窗现场截图')">
+                        <!-- Blurred ambient backdrop -->
+                        <div class="absolute inset-0 opacity-20 filter blur-xl scale-125 bg-center bg-cover pointer-events-none" style="background-image: url('${escapeHtml(thumb)}')"></div>
+                        
+                        <!-- Main screenshot (contained, maintaining native phone aspect ratio) -->
+                        <img src="${escapeHtml(thumb)}" alt="现场截图" loading="lazy" referrerpolicy="no-referrer" class="relative z-10 max-h-full w-auto max-w-full object-contain rounded-lg shadow-xl group-hover/thumb:scale-[1.02] transition-transform duration-300" onerror="this.onerror=null; this.parentElement.classList.add('p-3'); this.parentElement.innerHTML='<div class=\\'flex items-center justify-center gap-1.5 text-xs text-slate-500 py-6\\'><span>📷</span> 现场截图留档在库（点击查看）</div>';">
+                        
+                        <!-- Hover hint overlay -->
+                        <div class="absolute inset-0 z-20 bg-dark-950/30 backdrop-blur-[1px] flex items-center justify-center opacity-0 group-hover/thumb:opacity-100 transition-opacity">
+                          <span class="text-xs font-bold text-white bg-dark-900/90 px-3.5 py-1.5 rounded-xl border border-white/10 shadow-xl flex items-center gap-1.5">
+                            <span>🔍</span> <span>查看现场完整截图</span>
                           </span>
                         </div>
-                        <div class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/60 text-[10px] text-slate-300 font-mono">
-                          现场留存
+                        
+                        <!-- Badges -->
+                        <div class="absolute bottom-2 left-2 z-20 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-sm text-[10px] text-slate-300 font-mono flex items-center gap-1 border border-white/5">
+                          <span>📸</span> 现场存证凭据
                         </div>
+                        ${images.length > 1 ? `
+                          <div class="absolute top-2 right-2 z-20 px-2 py-0.5 rounded-md bg-sky-950/80 backdrop-blur-sm text-[10px] text-sky-300 font-mono border border-sky-500/30">
+                            共 ${images.length} 张凭据
+                          </div>
+                        ` : ''}
                       </div>
                     </div>
                   ` : ''}
@@ -643,13 +671,13 @@
                     ${(r.host_alternatives && r.host_alternatives.length > 0) ? `
                       <div class="flex items-start gap-1.5">
                         <span class="text-cyan-400 shrink-0 font-medium">📲 替代宿主:</span>
-                        <span class="text-slate-300">${r.host_alternatives.join('、')}</span>
+                        <span class="text-slate-300">${r.host_alternatives.map(escapeHtml).join('、')}</span>
                       </div>
                     ` : ''}
                     ${(r.advertiser_alternatives && r.advertiser_alternatives.length > 0) ? `
                       <div class="flex items-start gap-1.5">
                         <span class="text-emerald-400 shrink-0 font-medium">🛒 消费替代:</span>
-                        <span class="text-slate-300">${r.advertiser_alternatives.join('、')}</span>
+                        <span class="text-slate-300">${r.advertiser_alternatives.map(escapeHtml).join('、')}</span>
                       </div>
                     ` : ''}
                   </div>
@@ -658,14 +686,14 @@
 
               <!-- Footer -->
               <div class="px-5 py-3.5 bg-dark-900/60 border-t border-white/5 flex items-center justify-between gap-2 text-xs">
-                <button onclick="window.handleOutrage('${r.id}', '${adv.name}', this)" class="outrage-btn relative group/btn flex items-center gap-1.5 px-3 py-1.5 rounded-xl border transition-all ${userHasOutraged ? 'bg-sky-500/20 text-sky-300 border-sky-500/40' : 'bg-dark-850 hover:bg-sky-600/20 text-slate-300 hover:text-sky-300 border-white/10 hover:border-sky-500/30'}">
+                <button onclick="window.handleOutrage('${escapeHtml(r.id)}', '${escapeHtml(adv.name)}', this)" class="outrage-btn relative group/btn flex items-center gap-1.5 px-3 py-1.5 rounded-xl border transition-all ${userHasOutraged ? 'bg-sky-500/20 text-sky-300 border-sky-500/40' : 'bg-dark-850 hover:bg-sky-600/20 text-slate-300 hover:text-sky-300 border-white/10 hover:border-sky-500/30'}">
                   <span class="text-sm">🙋</span>
                   <span class="font-bold text-xs">${userHasOutraged ? '同受其扰' : '同受其扰'}</span>
                   <span class="outrage-count font-mono font-bold text-xs bg-dark-950/80 px-2 py-0.5 rounded-md border border-white/5 text-sky-400">${outrageCount}</span>
                 </button>
                 <div class="flex items-center gap-2">
-                  <span class="text-slate-500 font-mono hidden sm:inline">#${adv.name}</span>
-                  <button onclick="window.shareRecord('${r.id}', '${adv.name}')" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 font-medium px-2 py-1 rounded-lg hover:bg-dark-800">
+                  <span class="text-slate-500 font-mono hidden sm:inline">#${escapeHtml(adv.name)}</span>
+                  <button onclick="window.shareRecord('${escapeHtml(r.id)}', '${escapeHtml(adv.name)}')" class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 font-medium px-2 py-1 rounded-lg hover:bg-dark-800">
                     <span>🔗</span> <span>分享</span>
                   </button>
                 </div>
@@ -955,7 +983,7 @@
         }
         body += `### 🛠️ 涉及的骚扰与流氓手法（多选）\n${offenses.map(o => `- [x] ${o}`).join('\n')}\n\n### 📷 现场截图（必要凭据）与事发说明\n${desc ? desc + '\n\n' : ''}(请在此处直接 Ctrl+V 粘贴屏幕截图)`;
 
-        const issueUrl = `https://github.com/fairyeye/fucking-ad/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+        const issueUrl = `https://github.com/hp-z3/fucking-ad/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
         
         window.closeReportModal();
         window.open(issueUrl, '_blank');
@@ -963,22 +991,26 @@
       };
 
       // Preview modal
+      const modalViewOriginal = document.getElementById('modal-view-original');
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        modalImg.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E";
+      }
+
       window.previewImage = function (src, caption) {
         modalImg.src = src;
         modalCaption.innerText = caption;
+        if (modalViewOriginal) modalViewOriginal.href = src;
         modal.classList.remove('hidden');
         modal.classList.add('flex');
       };
 
-      closeModalBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      });
+      closeModalBtn.addEventListener('click', closeModal);
 
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-          modal.classList.add('hidden');
-          modal.classList.remove('flex');
+          closeModal();
         }
       });
 
@@ -1000,8 +1032,7 @@
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           if (!modal.classList.contains('hidden')) {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
+            closeModal();
           }
           if (!reportModal.classList.contains('hidden')) {
             window.closeReportModal();

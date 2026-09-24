@@ -1,12 +1,12 @@
 # fucking-ad
 ### 移动端不良广告与诱导跳转留存实录
 
-> 🌐 **在线避雷检索站（即时检索 · 移动端适配）**：**[https://fairyeye.github.io/fucking-ad/](https://fairyeye.github.io/fucking-ad/)**  
+> 🌐 **在线避雷检索站（即时检索 · 移动端适配）**：**[https://hp-z3.github.io/fucking-ad/](https://hp-z3.github.io/fucking-ad/)**  
 > 💬 **「广告心理学深谙遗忘效应——几个月后你忘了当初是在哪个流氓弹窗里见过的它，只觉得耳熟，于是在货架前付了款。」**  
 > ⚡ **「互联网也许健忘，但开源社区记性很好。以图为证，客观留存移动端各类“反客为主”的广告艺术与交互奇观。」**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Online Portal](https://img.shields.io/badge/Online%20Web-在线检索站-cyan.svg)](https://fairyeye.github.io/fucking-ad/)
+[![Online Portal](https://img.shields.io/badge/Online%20Web-在线检索站-cyan.svg)](https://hp-z3.github.io/fucking-ad/)
 ![Total Records](https://img.shields.io/badge/收录案例-1起-slate.svg)
 ![Advertiser Brands](https://img.shields.io/badge/涉事品牌-1家-slate.svg)
 ![Host Apps](https://img.shields.io/badge/载体应用-1款-slate.svg)
@@ -76,8 +76,8 @@
 - **涉事广告主**：抖音商城（电商购物 / 主体企业：北京字节跳动科技有限公司）
 - **载体宿主 APP**：酷安 (Android )
 - **主要表现手法**：`假关闭按钮/像素级诱导`、`开屏广告/全屏遮罩`、`无法关闭/强制倒计时`
-- **事发经过记录**：<img width="534" height="1186" alt="Image" src=" />
-- **截图凭据**：[查看网络截图](https://github.com/user-attachments/assets/08ec246f-be2d-446d-8922-d2cbd6618a65)
+- **事发经过记录**：打开酷安应用时遭遇来自抖音商城的全屏开屏广告遮罩，右上角跳过按钮设计隐蔽且延迟生效，界面中央设置大面积“向上滑动跳转至详情页或第三方应用”的手势诱导，极易造成误触跳转。
+- **截图凭据**：[查看截图凭证](screenshots/2026/20260917-issue2-douyin_01.png) ｜ [查看网络截图](https://github.com/user-attachments/assets/08ec246f-be2d-446d-8922-d2cbd6618a65)
 - **原始数据源**：[`data/records/20260917-issue2-douyin.yaml`](data/records/20260917-issue2-douyin.yaml)
 
 ---

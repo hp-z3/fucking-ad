@@ -109,6 +109,19 @@ def compile_data(records):
             if alt.strip():
                 ad_entry["alternatives"].add(alt.strip())
 
+        # Update host info
+        host_entry = hosts_map[host_name]
+        host_entry["name"] = host_name
+        if platform and platform != "未知":
+            host_entry["platforms"].add(platform)
+        host_entry["count"] += 1
+        host_entry["outrage_count"] += outrage
+        host_entry["advertisers"].add(adv_name)
+        host_entry["record_ids"].append(rid)
+        for alt in r.get("host_alternatives", []):
+            if alt.strip():
+                host_entry["alternatives"].add(alt.strip())
+
     # Format advertisers list (rank by outrage_count desc, count desc)
     advertisers_list = []
     for adv_name, info in sorted(advertisers_map.items(), key=lambda x: (-x[1]["outrage_count"], -x[1]["count"], x[0])):

@@ -42,9 +42,10 @@
         "开屏广告/全屏遮罩",
         "无法关闭/强制倒计时"
       ],
-      "description": "<img width=\"534\" height=\"1186\" alt=\"Image\" src=\" />",
+      "description": "打开酷安应用时遭遇来自抖音商城的全屏开屏广告遮罩，右上角跳过按钮设计隐蔽且延迟生效，界面中央设置大面积“向上滑动跳转至详情页或第三方应用”的手势诱导，极易造成误触跳转。",
       "evidence": {
         "images": [
+          "screenshots/2026/20260917-issue2-douyin_01.png",
           "https://github.com/user-attachments/assets/08ec246f-be2d-446d-8922-d2cbd6618a65"
         ],
         "video_url": ""
@@ -92,9 +93,13 @@
   "hosts": [
     {
       "name": "酷安",
-      "platforms": [],
-      "count": 0,
-      "advertisers": [],
+      "platforms": [
+        "Android"
+      ],
+      "count": 1,
+      "advertisers": [
+        "抖音商城"
+      ],
       "offenses": [
         {
           "name": "假关闭按钮/像素级诱导",
@@ -110,7 +115,9 @@
         }
       ],
       "alternatives": [],
-      "record_ids": []
+      "record_ids": [
+        "20260917-issue2-douyin"
+      ]
     }
   ]
 }

@@ -213,19 +213,21 @@ def process_issue(issue_data: dict, issue_number: int):
 
     # 7. Description
     raw_desc = extract_field(sections, ["现场截图", "事发说明", "事发经过", "恶行简述", "详细恶行描述", "详细描述", "恶行描述", "经历", "简述"], "")
-    cleaned_desc = re.sub(r"!\[.*?\]\(.*?\)", "", raw_desc).strip()
-    cleaned_desc = re.sub(r"https?://\S+", "", cleaned_desc).strip()
-    if len(cleaned_desc) >= 10:
+    cleaned_desc = re.sub(r"!\[.*?\]\(.*?\)", "", raw_desc)
+    cleaned_desc = re.sub(r"<img[^>]*>", "", cleaned_desc, flags=re.IGNORECASE)
+    cleaned_desc = re.sub(r"<[^>]+>", "", cleaned_desc)
+    cleaned_desc = re.sub(r"https?://\S+", "", cleaned_desc)
+    cleaned_desc = re.sub(r"[\(（]?[请在此处]*直接\s*(?:Ctrl\+V|Command\+V)?\s*粘贴(?:屏幕)?截图[\)）]?", "", cleaned_desc, flags=re.IGNORECASE)
+    cleaned_desc = re.sub(r"无图不予收录", "", cleaned_desc)
+    cleaned_desc = re.sub(r"\s+", " ", cleaned_desc).strip()
+
+    if len(cleaned_desc) >= 6:
         description = cleaned_desc
-    elif len(raw_desc.strip()) >= 10:
-        description = raw_desc.strip()
     else:
-        description = f"在 {host_name} 遇到来自 {adv_name} 的诱导弹窗，打扰正常使用体验。"
+        top_offenses = "、".join(list(detected_offenses)[:2])
+        description = f"在 {host_name} 遇到来自 {adv_name} 的流氓广告与诱导跳转，涉及【{top_offenses}】，严重打扰正常使用。"
 
-    # 8. Evidence Images (Ironclad proof)
-    all_images = extract_images(body)
-
-    # 9. Date extraction
+    # 8. Date extraction
     raw_date = extract_field(sections, ["事发日期", "捕获日期", "事发捕获日期", "日期"], "")
     match_date = re.search(r"\b(\d{4}-\d{2}-\d{2})\b", raw_date)
     if match_date:
@@ -264,6 +266,50 @@ def process_issue(issue_data: dict, issue_number: int):
         else:
             clean_slug = hashlib.md5(adv_name.encode("utf-8")).hexdigest()[:6]
     record_id = f"{date_compact}-issue{issue_number}-{clean_slug}"
+
+    # 9. Evidence Images (Download and locally archive into screenshots/YYYY/)
+    raw_images = extract_images(body)
+    all_images = []
+    year_str = date_str[:4]
+    screenshots_year_dir = PROJECT_ROOT / "screenshots" / year_str
+    screenshots_year_dir.mkdir(parents=True, exist_ok=True)
+
+    for idx, img_url in enumerate(raw_images, start=1):
+        if img_url.startswith("http://") or img_url.startswith("https://"):
+            ext = ".png"
+            if ".jpg" in img_url.lower() or ".jpeg" in img_url.lower():
+                ext = ".jpg"
+            elif ".webp" in img_url.lower():
+                ext = ".webp"
+            elif ".gif" in img_url.lower():
+                ext = ".gif"
+
+            local_filename = f"{record_id}_{idx:02d}{ext}"
+            local_rel_path = f"screenshots/{year_str}/{local_filename}"
+            local_abs_path = screenshots_year_dir / local_filename
+
+            download_success = False
+            try:
+                import subprocess
+                cmd = [
+                    "curl", "-s", "-L", "--max-time", "15",
+                    "-A", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                    "-H", "Referer: https://github.com/",
+                    img_url, "-o", str(local_abs_path)
+                ]
+                res = subprocess.run(cmd, capture_output=True, timeout=20)
+                if res.returncode == 0 and local_abs_path.exists() and local_abs_path.stat().st_size > 1000:
+                    download_success = True
+                    print(f"✅ 成功下载截图并本地归档: {local_rel_path} ({local_abs_path.stat().st_size} bytes)")
+            except Exception as e:
+                print(f"⚠️ 下载截图异常 {img_url}: {e}")
+
+            if download_success:
+                all_images.append(local_rel_path)
+            else:
+                all_images.append(img_url)
+        else:
+            all_images.append(img_url)
 
     host_dict = {
         "name": host_name,

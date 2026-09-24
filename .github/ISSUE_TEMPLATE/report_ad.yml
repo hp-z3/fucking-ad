@@ -8,7 +8,7 @@ body:
       value: |
         ### 🛡️ 感谢你为改善移动互联网使用体验提供客观样本！
         > 💡 **标题无需修改**：上方标题框保留默认即可，提交后 GitHub Actions 机器人将自动提取【品牌名称】与【宿主APP】重命名规范标题。
-        > 📸 **铁证留存**：请在下方【现场截图】一栏中**直接 Ctrl+V / Command+V 粘贴屏幕截图**（无图无法建档）。提交后自动生成 PR 并同步到 [在线避雷检索站](https://fairyeye.github.io/fucking-ad/)。
+        > 📸 **铁证留存**：请在下方【现场截图】一栏中**直接 Ctrl+V / Command+V 粘贴屏幕截图**（无图无法建档）。提交后自动生成 PR 并同步到 [在线避雷检索站](https://hp-z3.github.io/fucking-ad/)。
 
   - type: input
     id: advertiser_name
