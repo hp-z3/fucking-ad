@@ -103,10 +103,10 @@
             <div class="flex items-center gap-2">
               <span class="text-lg font-black tracking-wider text-white group-hover:text-sky-400 transition-colors">fucking-ad</span>
               <span class="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                留存库
+                曝光存证
               </span>
             </div>
-            <p class="text-[11px] text-slate-400 hidden sm:block">客观存证 · 消费避雷</p>
+            <p class="text-[11px] text-slate-400 hidden sm:block">移动端不良广告与恶意交互实录</p>
           </div>
         </a>
 
@@ -114,17 +114,17 @@
         <div class="hidden lg:flex items-center gap-3 text-xs">
           <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-dark-900 border border-white/5">
             <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-            <span class="text-slate-400">已建档案例</span>
+            <span class="text-slate-400">已收录案例</span>
             <span id="stat-records" class="font-mono font-bold text-sky-400">0</span>
           </div>
           <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-dark-900 border border-white/5">
             <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-            <span class="text-slate-400">涉事品牌</span>
+            <span class="text-slate-400">涉及广告主</span>
             <span id="stat-advertisers" class="font-mono font-bold text-amber-400">0</span>
           </div>
           <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-dark-900 border border-white/5">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span class="text-slate-400">载体应用</span>
+            <span class="text-slate-400">宿主应用</span>
             <span id="stat-hosts" class="font-mono font-bold text-emerald-400">0</span>
           </div>
         </div>
@@ -133,7 +133,7 @@
         <div class="flex items-center gap-3">
           <button onclick="window.openReportModal()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-500 hover:to-cyan-500 text-white transition-all shadow-lg shadow-sky-950/40 transform hover:-translate-y-0.5 active:translate-y-0">
             <span>⚡</span>
-            <span>10秒提交案例</span>
+            <span>提报曝光案例</span>
           </button>
           
           <a href="https://github.com/hp-z3/fucking-ad" target="_blank" class="p-2 rounded-xl text-slate-400 hover:text-white bg-dark-900/80 hover:bg-dark-800 border border-white/5 transition-colors" title="GitHub 仓库">
@@ -148,19 +148,19 @@
   <section class="relative pt-12 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full text-center">
     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-xs font-medium mb-6 shadow-sm">
       <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-      开源消费者行动 · 移动端诱导与不良广告留存库
+      开源存证行动 · 记录每一次不请自来的流氓跳转
     </div>
 
     <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white mb-4">
-      手腕稍微一偏<br class="sm:hidden">
+      天下苦流氓广告久矣<br class="sm:hidden">
       <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-indigo-300">
-        电商大门常开？
+        以图为证 · 客观留存
       </span>
     </h1>
 
-    <p class="max-w-2xl mx-auto text-xs sm:text-sm text-slate-400 leading-relaxed">
-      劣质营销深谙遗忘效应——时间一长你忘了它曾粗暴打扰过日常，只觉得耳熟，便在货架前付了款。<br class="hidden sm:inline">
-      在这里，每一次不请自来的跳转与微操诱导都被如实建档，把知情权与选择权还给用户。
+    <p class="max-w-2xl mx-auto text-xs sm:text-sm text-slate-300/90 leading-relaxed">
+      摇晃手机超敏唤醒、隐蔽假叉号误触跳转、全屏倒计时强制等待……<br class="hidden sm:inline">
+      商业营销不应建立在对用户的戏弄之上。我们以截图为实据，客观记录移动端各类流氓广告与诱导交互，把清爽与知情权还给用户。
     </p>
 
     <!-- Search Bar -->
@@ -173,7 +173,7 @@
         <input
           type="text"
           id="search-input"
-          placeholder="消费或下载前搜一下避雷：输入品牌、母公司、载体APP或手段..."
+          placeholder="搜索曝光案例：输入广告品牌、企业主体、宿主应用或恶行手段（如“摇一摇”、“假关闭”）..."
           class="w-full py-3.5 bg-transparent text-sm sm:text-base text-white placeholder-slate-500 focus:outline-none"
         >
 
@@ -184,7 +184,7 @@
           <div class="hidden sm:flex items-center gap-1 px-2 py-1 text-[11px] font-mono text-slate-400 bg-dark-850 border border-white/5 rounded-lg">
             <span>按</span>
             <kbd class="text-sky-400 font-bold">/</kbd>
-            <span>键聚焦</span>
+            <span>快速检索</span>
           </div>
         </div>
       </div>
@@ -208,13 +208,13 @@
       
       <div class="flex items-center gap-2 p-1 bg-dark-900/90 rounded-xl border border-white/5 text-xs sm:text-sm shrink-0">
         <button data-tab="records" class="tab-btn px-4 py-2 rounded-lg font-medium transition-all bg-sky-600 text-white shadow-md shadow-sky-950/40">
-          📋 案例档案库 (<span id="tab-count-records">0</span>)
+          📋 曝光案例库 (<span id="tab-count-records">0</span>)
         </button>
         <button data-tab="advertisers" class="tab-btn px-4 py-2 rounded-lg font-medium transition-all text-slate-400 hover:text-white">
-          🏢 涉事品牌榜 (<span id="tab-count-advertisers">0</span>)
+          🏢 广告主曝光榜 (<span id="tab-count-advertisers">0</span>)
         </button>
         <button data-tab="hosts" class="tab-btn px-4 py-2 rounded-lg font-medium transition-all text-slate-400 hover:text-white">
-          📱 宿主应用榜 (<span id="tab-count-hosts">0</span>)
+          📱 关联宿主榜 (<span id="tab-count-hosts">0</span>)
         </button>
         <button data-tab="alternatives" class="tab-btn px-4 py-2 rounded-lg font-medium transition-all text-slate-400 hover:text-white">
           💡 纯净替代推荐
@@ -255,9 +255,9 @@
           📂
         </div>
         <h3 class="text-base font-bold text-white mb-1">暂无收录案例</h3>
-        <p class="text-xs text-slate-400 max-w-md mx-auto mb-5">当前名录已就绪，欢迎通过上方按钮或 GitHub Issue 提交第一个案例线索！</p>
+        <p class="text-xs text-slate-400 max-w-md mx-auto mb-5">当前名录已就绪，欢迎通过上方按钮提交第一个曝光案例！</p>
         <button onclick="window.openReportModal()" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold shadow-md shadow-sky-950/40">
-          ⚡ 提交第一起案例
+          ⚡ 提报曝光案例
         </button>
       </div>
     </div>
@@ -268,9 +268,9 @@
         <div class="p-6 border-b border-white/5 flex items-center justify-between gap-4 flex-wrap bg-gradient-to-r from-slate-900/60 to-transparent">
           <div>
             <h2 class="text-lg font-black text-white flex items-center gap-2">
-              <span>🏢</span> 涉事品牌关注名录 (消费避雷参考)
+              <span>🏢</span> 涉及广告主曝光榜 (流氓推广企业)
             </h2>
-            <p class="text-xs text-slate-400 mt-1">日常消费与选购时，建议把预算留给尊重用户体面的良心企业：</p>
+            <p class="text-xs text-slate-400 mt-1">统计在各类应用中频繁实施恶意诱导与流氓跳转的品牌主体：</p>
           </div>
         </div>
 
@@ -286,9 +286,9 @@
         <div class="p-6 border-b border-white/5 flex items-center justify-between gap-4 flex-wrap bg-gradient-to-r from-slate-900/60 to-transparent">
           <div>
             <h2 class="text-lg font-black text-white flex items-center gap-2">
-              <span>📱</span> 载体宿主应用观察榜 (高频弹窗发生地)
+              <span>📱</span> 宿主应用观察榜 (弹窗高发 APP)
             </h2>
-            <p class="text-xs text-slate-400 mt-1">这些应用作为载体，频繁出现传感器超敏唤醒或诱导点击现象：</p>
+            <p class="text-xs text-slate-400 mt-1">统计频繁出现超敏摇一摇、误触跳转与全屏遮罩的载体应用：</p>
           </div>
         </div>
         <div id="hosts-cards" class="divide-y divide-white/5">

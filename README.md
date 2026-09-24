@@ -1,15 +1,15 @@
 # fucking-ad
 ### 移动端不良广告与诱导跳转留存实录
 
-> 🌐 **在线避雷检索站（即时检索 · 移动端适配）**：**[https://hp-z3.github.io/fucking-ad/](https://hp-z3.github.io/fucking-ad/)**  
-> 💬 **「广告心理学深谙遗忘效应——几个月后你忘了当初是在哪个流氓弹窗里见过的它，只觉得耳熟，于是在货架前付了款。」**  
-> ⚡ **「互联网也许健忘，但开源社区记性很好。以图为证，客观留存移动端各类“反客为主”的广告艺术与交互奇观。」**
+> 🌐 **在线曝光检索站（即时检索 · 移动端适配）**：**[https://hp-z3.github.io/fucking-ad/](https://hp-z3.github.io/fucking-ad/)**  
+> 💬 **「商业营销不应建立在对用户的戏弄之上。天下苦流氓广告久矣，以图为证，客观留存移动端各类恶意诱导与流氓跳转。」**  
+> ⚡ **「互联网也许健忘，但开源社区有据可循。让每一次粗暴打扰留下公开透明的存证档案。」**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Online Portal](https://img.shields.io/badge/Online%20Web-在线检索站-cyan.svg)](https://hp-z3.github.io/fucking-ad/)
 ![Total Records](https://img.shields.io/badge/收录案例-1起-slate.svg)
-![Advertiser Brands](https://img.shields.io/badge/涉事品牌-1家-slate.svg)
-![Host Apps](https://img.shields.io/badge/载体应用-1款-slate.svg)
+![Advertiser Brands](https://img.shields.io/badge/涉及广告主-1家-slate.svg)
+![Host Apps](https://img.shields.io/badge/涉及宿主APP-1款-slate.svg)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
